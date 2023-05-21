@@ -1,5 +1,13 @@
 // 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=150/'
 
+// list of Pokemon
+
+export interface PokemonList {
+  name: string;
+  url: string;
+}
+[];
+
 export const getPokeList = async () => {
   try {
     const res = await fetch(
@@ -11,4 +19,15 @@ export const getPokeList = async () => {
     console.log(err);
     throw err;
   }
+};
+
+// Pokemon Images
+// https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png
+
+// export interface Sprites {
+//   num: string;
+// }
+
+export const getSprite = (num: string) => {
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${num}.png`;
 };
