@@ -15,10 +15,15 @@ const App = () => {
     const getNames = async () => {
       const data = await getPokeList();
       setPokeList(data);
-      // setPokeDesc('yeppers');
+      initialDesc();
     };
     getNames();
   }, []);
+
+  const initialDesc = async () => {
+    const initial = await getDesc('1');
+    setPokeDesc(initial);
+  };
 
   const updateDesc = async (e: SelectEvent) => {
     const desc = await getDesc(e.target.value);
