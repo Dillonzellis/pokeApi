@@ -8,13 +8,14 @@ type SelectEvent = React.ChangeEvent<HTMLSelectElement>;
 
 const App = () => {
   const [pokeList, setPokeList] = useState<PokemonList[]>([]);
-  const [pokeIdx, setPokeIdx] = useState('1');
+  const [pokeIdx, setPokeIdx] = useState<any>('1');
   const [pokeDesc, setPokeDesc] = useState('');
 
   useEffect(() => {
     const getNames = async () => {
       const data = await getPokeList();
       setPokeList(data);
+      // setPokeDesc('yeppers');
     };
     getNames();
   }, []);
@@ -29,6 +30,17 @@ const App = () => {
     updateDesc(e);
   };
 
+  const prevBtn = () => {
+    setPokeIdx((pokeIdx: number) => pokeIdx - 1);
+    // setPokeDesc((pokeDesc) => pokeDesc - 1);
+  };
+
+  const nextBtn = () => {
+    setPokeIdx((pokeIdx: number) => pokeIdx + 1);
+  };
+
+  console.log(pokeDesc);
+
   return (
     <main className='bg-slate-900 h-screen flex flex-col items-center justify-center gap-8'>
       <div className='text-white'>yeppers</div>
@@ -41,6 +53,8 @@ const App = () => {
       </select>
       <Card pokeNum={pokeIdx} />
       <Desc pokeDesc={pokeDesc} />
+      <button onClick={prevBtn}>Prev</button>
+      <button onClick={nextBtn}>Next</button>
     </main>
   );
 };
